@@ -62,6 +62,8 @@ class Tp6MultiAppReflectionParsing
         $reflection=new \ReflectionClass($className);
         $node['reflection']=$reflection;
         $node['class']=$reflection->getName();
+        $node['doc']=$reflection->getDocComment();
+        $node['url']=$appName."/".$classUrl;
         //获取类的注解
         foreach ($this->nodeNames as $nodeName=>$preg){
             if (is_int($nodeName)){
