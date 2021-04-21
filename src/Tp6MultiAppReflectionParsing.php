@@ -25,7 +25,7 @@ class Tp6MultiAppReflectionParsing
     private $preg="[ |\r|\t]*=[ |\r|\t]*\"(.*)\"";
 
     /**
-     * Base constructor.
+     * Tp6MultiAppReflectionParsing constructor.
      * @param string[] $apps 应用列表
      * @param string[] $nodeNames 节点注解信息列表 节点注解示例 @group="分组"
      */
