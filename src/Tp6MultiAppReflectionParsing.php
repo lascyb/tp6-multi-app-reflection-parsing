@@ -34,12 +34,10 @@ class Tp6MultiAppReflectionParsing
         $this->nodeNames=$nodeNames;
         foreach (scandir(base_path()) as $dir){
             if ($dir==="."||$dir==="..") continue;
-
             if (in_array($dir,$apps)&&is_dir(base_path($dir))){
                 $this->nodes[$dir]=$this->subDir($dir,base_path("$dir/controller"), "app\\$dir\\controller");
             }
         }
-        dump($this->nodes);
     }
 
     private function subDir($appDir,$dirPath, $namespace,&$nodes=[],$path=""): array
