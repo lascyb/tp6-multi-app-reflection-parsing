@@ -62,6 +62,20 @@ class Tp6MultiAppReflectionParsing
         $reflection=new \ReflectionClass($className);
         $node['reflection']=$reflection;
         $node['class']=$reflection->getName();
+        //获取类的注解
+        foreach ($this->nodeNames as $nodeName=>$preg){
+            if (is_int($nodeName)){
+                $nodeName=$preg;
+                $pattern="/@{$preg}{$this->preg}/";
+            }else{
+                $pattern=$preg;
+            }
+            ${$nodeName."Preg"}=preg_match_all($pattern,$reflection->getDocComment(), ${$nodeName."Temp"},PREG_SET_ORDER);
+            if (${$nodeName."Preg"}>=1){
+                $node["ref"][$nodeName]=${$nodeName."Temp"};
+            }
+        }
+        //获取方法的注解
         $methods=$reflection->getMethods(\ReflectionMethod::IS_PUBLIC);
         foreach ($methods as $method){
             if($method->isConstructor()||$method->isAbstract()||$method->isDestructor()||$method->isStatic())continue;
